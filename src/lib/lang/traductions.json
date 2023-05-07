@@ -1,0 +1,20 @@
+{
+    "fr": {
+        "code": "fr",
+        "language": "Français",
+        "title":"Mon giga site",
+        "intro":"Bienvenue sur la page d'accueil"
+    },
+    "en": {
+        "code": "en",
+        "language": "English",
+        "title":"My giga site",
+        "intro":"Welcome to our page"
+    },
+    "es": {
+        "code": "es",
+        "language": "Español",
+        "title":"Mi sitio web",
+        "intro":"Bienvenido a mi sitio web"
+    }
+}
