@@ -16,9 +16,9 @@ jobs:
     - name: SSH and deploy
       uses: appleboy/ssh-action@master
       with:
-        username: ${{ env.SERVER.USERNAME }}
-        host: ${{ env.SERVER.SERVER }}
-        password: ${{ env.SERVER.PASSWORD }}
+        username: ${{ secrets.SERVER.USERNAME }}
+        host: ${{ secrets.SERVER.SERVER }}
+        password: ${{ secrets.SERVER.PASSWORD }}
         script: |
           cd /home/guillianv/dev/sveltekit/sveltekit-begins
           docker-compose down
