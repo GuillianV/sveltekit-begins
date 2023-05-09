@@ -17,7 +17,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         username: ${{ env.USERNAME }}
-        host: ${{ env.SERVER }}
+        host: 54.38.85.10
         password: ${{ env.PASSWORD }}
         script: |
           cd /home/guillianv/dev/sveltekit/sveltekit-begins
