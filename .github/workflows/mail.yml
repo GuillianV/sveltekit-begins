@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      HOST: ${{ secrets.SERVER }}
+      HOST: ${{ secrets.HOST }}
       USERNAME: ${{ secrets.USERNAME }}
       PASSWORD: ${{ secrets.PASSWORD }}
 
@@ -21,7 +21,7 @@ jobs:
       uses: appleboy/ssh-action@master
       with:
         username: ${{ secrets.USERNAME }}
-        host: ${{ secrets.SERVER }}
+        host: ${{ secrets.HOST }}
         password: ${{ secrets.PASSWORD }}
         script: |
           cd /home/guillianv/dev/sveltekit/sveltekit-begins
