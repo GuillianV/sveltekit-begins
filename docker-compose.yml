@@ -9,7 +9,6 @@ services:
     networks:
       - traefik-net
     labels:
-      - "traefik.http.services.sveltekit.loadbalancer.server.port=3000"
       - "traefik.enable=true"
       - "traefik.http.routers.sveltekit.rule=Host(`svelte-begins.guillian.net`)"
       - "traefik.http.routers.sveltekit.entrypoints=http"
