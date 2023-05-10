@@ -15,7 +15,7 @@ services:
       - "traefik.http.routers.sveltekit-secure.rule=Host(`svelte-begins.guillian.net`)"
       - "traefik.http.routers.sveltekit-secure.entrypoints=https"
       - "traefik.http.routers.sveltekit-secure.tls=true"
-      - "traefik.http.services.sveltekit.loadbalancer.server.port=8080"
+      - "traefik.http.services.sveltekit.loadbalancer.server.port=3000"
 
 networks:
   traefik-net:
