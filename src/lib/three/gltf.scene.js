@@ -23,12 +23,21 @@ export class GLTFScene {
 		this.scene = new THREE.Scene();
 
 		this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-		this.camera.position.z = 5;
+		this.camera.position.z = 10;
 	
 		this.geometry = new THREE.BoxGeometry();
 
-		this.pointLight = new THREE.PointLight(0x0000ff,0.2);
-		 this.pointLight.position.set(-10, 10, -10).normalize();
+		this.directionalLight = new THREE.DirectionalLight(0x9090aa);
+		this.directionalLight.position.set(-10, 10, -10).normalize();
+		this.scene.add(this.directionalLight);
+	
+		this.hemisphereLight = new THREE.HemisphereLight(0xffffff, 0x444444);
+		this.hemisphereLight.position.set(1, 1, 1);
+		this.scene.add(this.hemisphereLight);
+	
+
+		this.pointLight = new THREE.PointLight(0x000000,1.2);
+		this.pointLight.position.set(-10, 10, -10).normalize();
 		this.scene.add(this.pointLight);
 
 		this.renderer = null;
@@ -37,7 +46,7 @@ export class GLTFScene {
 		
 		self = this;
 		var loader = new GLTFLoader();
-		loader.load( '/models/switch/scene.gltf', function ( gltf )
+		loader.load( '/models/floating/scene.gltf', function ( gltf )
 		{
 	
 			self.starnight = gltf.scene 
