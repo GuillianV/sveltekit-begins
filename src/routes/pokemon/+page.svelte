@@ -1,7 +1,2 @@
-<script>
-    export let data;
-    const pokemon = data.pokemon
-</script>
-
-<h1>Pokemon {pokemon.name}</h1>
-<img src={pokemon.sprites.front_default} alt={pokemon.name} />
+<a href="/pokemon/pikachu" data-sveltekit-preload-data>Pikaa</a>
+<a href="/pokemon/turtwig">Torti</a>

@@ -1,9 +1,3 @@
-export const load = async (loadEvent) =>{
-
-    const { fetch } = loadEvent;
-    const response = await fetch('https://pokeapi.co/api/v2/pokemon/turtwig');
-    let pokemon = await response.json();
-    return {
-        pokemon
-    }
-}
+export const prerender = true;
+export let ssr = true;
+export let csr = true;
