@@ -46,7 +46,7 @@ export class GLTFScene {
 		
 		self = this;
 		var loader = new GLTFLoader();
-		loader.load( '/models/floating/scene.gltf', function ( gltf )
+		loader.load( '/models/switch/scene.gltf', function ( gltf )
 		{
 	
 			self.starnight = gltf.scene 
