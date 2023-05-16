@@ -1,20 +1,54 @@
 {
     "fr": {
-        "code": "fr",
-        "language": "Français",
-        "title":"Mon giga site",
-        "intro":"Bienvenue sur la page d'accueil"
+        "defaults":{
+            "titre":"Titre par default",
+            "code": "fr",
+            "language": "Français"
+        },
+        "/fr":{
+            "titre":"Homepage",
+            "intro":"Bienvenue à la page d'accueil"
+        },
+        "/about":{
+
+            "titre":"a propos",
+            "intro":"Mon passé, ma vie, mon futur"
+
+        }
     },
     "en": {
-        "code": "en",
-        "language": "English",
-        "title":"My giga site",
-        "intro":"Welcome to our page"
+        "defaults":{
+            "titre":"Title by default",
+            "code": "en",
+            "language": "English"
+        },
+        "/en":{
+            "titre":"Homepage",
+            "intro":"Welcome to my homepage"
+        },
+        "/about":{
+
+            "titre":"About",
+            "intro":"about my past, my life, my future"
+
+        }
+       
     },
     "es": {
-        "code": "es",
-        "language": "Español",
-        "title":"Mi sitio web",
-        "intro":"Bienvenido a mi sitio web"
+        "defaults":{
+            "titre":"Mi sitio web",
+            "code": "es",
+            "language": "Español"
+        },
+        "/es":{
+            "titre":"Mi sitio web home",
+            "intro":"Benvenido a mi sitio web"
+        },
+        "/about":{
+
+            "titre":"par me",
+            "intro":"hola con"
+
+        }
     }
 }

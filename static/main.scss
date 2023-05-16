@@ -1,34 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Comfortaa&display=swap');
 
 @font-face {
-    font-family: 'BebasNeue';
+    font-family: 'Bebas Neue';
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/BebasNeue.ttf'); 
+    font-display: swap;
 }
 
 @font-face {
     font-family: 'Comfortaa';
     font-style: normal;
     font-weight: 400;
-    src: url('/fonts/Comfortaa.ttf'); 
+    font-display: swap;
 }
 
 
-$color-darkblue : #0B2027;
-$color-light : #FFFBFC;
 $color-primary : #D30C7B;
-
-$font-family-main : "BebasNeue";
+$color-light : #FFFBFC;
+$color-darkblue : #0B2027;
+$font-family-main : "Bebas Neue";
 $font-family-secondary : "Comfortaa";
 
 :root{
 
-    --color-primary : $color-primary;
-    --color-light : $color-light;
-    --color-darkblue : $color-darkblue;
+    --color-primary : #D30C7B;
+    --color-light : #FFFBFC;
+    --color-darkblue : #0B2027;
 
-    --font-family-main : $font-family-main;
-    --font-family-secondary : $font-family-secondary;
+    --font-family-main : "Bebas Neue";
+    --font-family-secondary : "Comfortaa";
+    font-size: 18px;
 }
 
 @import url("/styles/reset.scss");
