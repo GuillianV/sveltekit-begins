@@ -46,5 +46,34 @@ input{
     border-radius: 0;
 }
 
+button {
+    border: none;
+    margin: 0;
+    padding: 0;
+    width: auto;
+    overflow: visible;
 
+    background: transparent;
+    color: inherit;
+    font: inherit;
+    line-height: normal;
+    -webkit-font-smoothing: inherit;
+    -moz-osx-font-smoothing: inherit;
+    -webkit-appearance: none;
+    text-align: inherit;
+    outline: none;
+    border-radius:0;
+}
 
+/* Remove excess padding and border in Firefox 4+ */
+button::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+button:focus:not(:focus-visible) {
+    outline: none;
+  }
+  button:focus:not(:-moz-focusring) {
+    outline: none;
+  }

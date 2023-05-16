@@ -1,3 +1,3 @@
-export let csr = false;
+export let csr = true;
 export let ssr = true;
 export const prerender = true;
