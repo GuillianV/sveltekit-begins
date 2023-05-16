@@ -6,7 +6,7 @@
             "language": "Français"
         },
         "/fr":{
-            "titre":"Homepage",
+            "titre":"Ma page Home",
             "intro":"Bienvenue à la page d'accueil"
         },
         "/about":{
@@ -18,7 +18,7 @@
     },
     "en": {
         "defaults":{
-            "titre":"Title by default",
+            "titre":"Homepage default",
             "code": "en",
             "language": "English"
         },

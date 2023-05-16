@@ -129,7 +129,7 @@ const options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '\n\n<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<link rel="preload" href="/fonts/BebasNeue.ttf" as="font" type="font/ttf" crossorigin> \n		<link rel="preload" href="/fonts/Comfortaa.ttf" as="font" type="font/ttf" crossorigin> \n\n		<meta name="viewport" content="width=device-width" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n\n",
+    app: ({ head, body, assets: assets2, nonce, env }) => '\n\n<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n\n		<meta name="viewport" content="width=device-width" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n\n<style>\n\n	body {\n	\n	\n		background: var(--color-darkblue) ;\n		background: radial-gradient(at center, var(--color-darkblue) , #061418), url(https://grainy-gradients.vercel.app/noise.svg);\n		background-repeat: no-repeat;\n		width: 100%;\n		height: 100%;\n		min-height: 100vh;\n		min-width: 100vw;\n	\n	}\n\n	body::after{\n			content: '';\n			background-image: url(/images/noise.png);\n			background-repeat: repeat;\n			pointer-events: none;\n			width: 100%;\n			height: 100%;\n			z-index: 9999;\n			position: absolute;\n			top: 0;\n	}\n</style>\n	",
     error: ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -190,10 +190,10 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "1szbzll"
+  version_hash: "45a47y"
 };
 function get_hooks() {
-  return import('./chunks/hooks.server-764f16cf.js');
+  return import('./chunks/hooks.server-9c047aa9.js');
 }
 
 /** @type {Record<string, string>} */

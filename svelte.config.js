@@ -19,7 +19,11 @@ const config = {
             precompress: false,
             envPrefix: '',
             polyfill: true
-        })
+        }),
+		prerender:{
+			crawl:true,
+			entries:['/','/fr','/en','/es']
+		}
 	}
 };
 
