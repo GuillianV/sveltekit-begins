@@ -28,6 +28,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@splinetool/loader": "^0.9.339",
 		"three": "^0.152.2"
 	}
 }

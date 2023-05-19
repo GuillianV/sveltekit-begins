@@ -1,45 +1,51 @@
 
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr" >
 	<head>
 		<meta charset="utf-8" />
 
 		<meta name="viewport" content="width=device-width" />
 		<meta http-equiv="content-security-policy" content="">
 		<link href="./_app/immutable/assets/2.6dddb091.css" rel="stylesheet">
+		<link href="./_app/immutable/assets/4.06d805c7.css" rel="stylesheet">
 		<link href="./_app/immutable/assets/H1.bb193338.css" rel="stylesheet">
-		<link rel="modulepreload" href="./_app/immutable/entry/start.4e2189c5.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/start.053729e2.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/index.3c9e8116.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.1f3b6430.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/singletons.405aed10.js">
 		<link rel="modulepreload" href="./_app/immutable/chunks/control.e7f5239e.js">
-		<link rel="modulepreload" href="./_app/immutable/entry/app.ad225ee6.js">
+		<link rel="modulepreload" href="./_app/immutable/entry/app.c723b11b.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/preload-helper.41c905a7.js">
 		<link rel="modulepreload" href="./_app/immutable/nodes/0.8e5ef124.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/2.31c9ceba.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/stores.3eb49fff.js">
-		<link rel="modulepreload" href="./_app/immutable/nodes/4.36dc6590.js">
-		<link rel="modulepreload" href="./_app/immutable/chunks/H1.409caca6.js"><title>Selte Begins</title><!-- HEAD_svelte-1mhw16t_START --><link rel="icon" href="/favicon.png"><!-- HEAD_svelte-1mhw16t_END -->
+		<link rel="modulepreload" href="./_app/immutable/nodes/2.9aa44aa8.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/stores.e6dd0ab4.js">
+		<link rel="modulepreload" href="./_app/immutable/nodes/4.62b42019.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/H1.409caca6.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/three.module.5693092b.js">
+		<link rel="modulepreload" href="./_app/immutable/chunks/BufferGeometryUtils.e400a2d4.js"><title>Selte Begins</title><!-- HEAD_svelte-1mhw16t_START --><link rel="icon" href="/favicon.png"><!-- HEAD_svelte-1mhw16t_END -->
 	</head>
-	<body data-sveltekit-preload-data="hover">
+	<body data-sveltekit-preload-data="hover" style="background: #0B2027 ;">
 		<div style="display: contents">
 
 
 
 
-<div class="app"><button class=" svelte-1k70f2z"><span class="svelte-1k70f2z"></span>
+<div class="app"><button name="toggle nav" class=" svelte-1k70f2z"><span class="svelte-1k70f2z"></span>
     <span class="svelte-1k70f2z"></span>
     <span class="svelte-1k70f2z"></span></button>
 
 <nav></nav>
 	<main><h1 class="svelte-17xjmla">Ma page Home</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
-<a href="/fr/about">a propos</a></main></div>
+<a href="/fr/about">a propos</a>
+
+<canvas class="svelte-jfn75y"></canvas></main></div>
 
 
 			
 			<script>
 				{
-					__sveltekit_1hccx18 = {
+					__sveltekit_sucixm = {
 						base: new URL(".", location).pathname.slice(0, -1),
 						env: {}
 					};
@@ -49,8 +55,8 @@
 					const data = [null,{"type":"data","data":{titre:"Ma page Home",code:"fr",language:"Français",intro:"Bienvenue à la page d'accueil"},"uses":{}},null];
 
 					Promise.all([
-						import("./_app/immutable/entry/start.4e2189c5.js"),
-						import("./_app/immutable/entry/app.ad225ee6.js")
+						import("./_app/immutable/entry/start.053729e2.js"),
+						import("./_app/immutable/entry/app.c723b11b.js")
 					]).then(([kit, app]) => {
 						kit.start(app, element, {
 							node_ids: [0, 2, 4],
@@ -70,13 +76,14 @@
 	body {
 	
 	
-		background: var(--color-darkblue) ;
-		background: radial-gradient(at center, var(--color-darkblue) , #061418), url(https://grainy-gradients.vercel.app/noise.svg);
+		
+		background: radial-gradient(at center, #0B2027 , #061418);
 		background-repeat: no-repeat;
 		width: 100%;
 		height: 100%;
 		min-height: 100vh;
 		min-width: 100vw;
+		z-index: 1;
 	
 	}
 
@@ -85,6 +92,7 @@
 		height: 100%;
 		min-height: 100vh;
 		min-width: 100vw;
+		z-index: 10;
 	}
 
 
@@ -95,8 +103,8 @@
 			pointer-events: none;
 			width: 100%;
 			height: 100%;
-			z-index: 9999;
-			position: absolute;
+			z-index: -10;
+			position: fixed;
 			top: 0;
 	}
 </style>
