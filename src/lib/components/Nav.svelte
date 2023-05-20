@@ -1,12 +1,16 @@
 <script>
-import Icon from '@iconify/svelte';
 
 let navActive = false;
 
 
+function toggleNav(){
+    navActive =!navActive
+
+}
+
 </script>
 
-<button name="toggle nav" class="{navActive ? 'active' : ''}" on:click={()=> {navActive =!navActive}}>
+<button name="toggle nav" class="{navActive ? 'active' : ''}" on:click={toggleNav}>
     <span></span>
     <span></span>
     <span></span>

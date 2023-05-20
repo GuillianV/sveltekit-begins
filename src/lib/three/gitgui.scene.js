@@ -37,19 +37,9 @@ export class GitGuiScene {
         this.renderer = null;
 
         this.starnight = null;
+     
 
-        self = this;
-        // spline scene
-        this.loader = new SplineLoader();
-        this.loader.load(
-
-            'https://prod.spline.design/6JqM5YunTZGiztNg/scene.splinecode',
-            (splineScene) => {
-                self.starnight = splineScene
-                self.scene.add(self.starnight);
-            }
-        );
-
+        this.onLoadModel()
         window.addEventListener('mousedown', this.onMouseDown.bind(this));
         window.addEventListener('mouseup', this.onMouseUp.bind(this));
         window.addEventListener('resize', this.resize);
@@ -61,6 +51,23 @@ export class GitGuiScene {
         
             }
         });
+    }
+
+    async onLoadModel(){
+             
+        // spline scene
+     
+        self = this;
+        this.loader = new SplineLoader();
+        this.loader.load(
+
+            'https://prod.spline.design/6JqM5YunTZGiztNg/scene.splinecode',
+            (splineScene) => {
+                self.starnight = splineScene
+                self.scene.add(self.starnight);
+            }
+        );
+
     }
 
     onMouseDown(event) {
