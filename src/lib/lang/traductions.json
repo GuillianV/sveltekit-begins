@@ -3,7 +3,8 @@
         "defaults":{
             "titre":"Titre par default",
             "code": "fr",
-            "language": "Français"
+            "language": "Français",
+            "LDM":"Mode détaillé"
         },
         "/fr":{
             "titre":"Ma page Home",
@@ -20,7 +21,8 @@
         "defaults":{
             "titre":"Homepage default",
             "code": "en",
-            "language": "English"
+            "language": "English",
+            "LDM":"Low detail mode"
         },
         "/en":{
             "titre":"Homepage",
@@ -38,7 +40,8 @@
         "defaults":{
             "titre":"Mi sitio web",
             "code": "es",
-            "language": "Español"
+            "language": "Español",
+            "LDM":"diminuto detaillo"
         },
         "/es":{
             "titre":"Mi sitio web home",
