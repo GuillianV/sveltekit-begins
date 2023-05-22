@@ -15,7 +15,7 @@ export async function handle({event,resolve}) {
         let baseTrads=traductions[langCode]
         let { defaults = {} } = baseTrads;
         event.locals.traductions = Object.assign({}, defaults,  baseTrads[pathname]) 
-     
+    
 
     }
     return await resolve(event);
