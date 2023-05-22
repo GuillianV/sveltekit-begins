@@ -1,6 +1,8 @@
 import { c as create_ssr_component, s as setContext, v as validate_component, m as missing_component, n as noop, a as safe_not_equal } from './chunks/index3-e904a6bd.js';
 import { e as error, j as json, t as text, R as Redirect, H as HttpError, A as ActionFailure } from './chunks/index-36410280.js';
 
+const DEV = false;
+
 let base = "";
 let assets = base;
 const initial = { base, assets };
@@ -129,7 +131,7 @@ const options = {
   root: Root,
   service_worker: false,
   templates: {
-    app: ({ head, body, assets: assets2, nonce, env }) => '\n\n<!DOCTYPE html>\n<html lang="fr" >\n	<head>\n		<meta charset="utf-8" />\n\n		<meta name="viewport" content="width=device-width" />\n		' + head + '\n	</head>\n	<body data-sveltekit-preload-data="hover" style="background: #0B2027 ;">\n		<div style="display: contents">' + body + "</div>\n	</body>\n</html>\n\n<style>\n\n	body {\n	\n	\n		\n		background: radial-gradient(at center, #0B2027 , #061418);\n		background-repeat: no-repeat;\n		width: 100%;\n		height: 100%;\n		min-height: 100vh;\n		min-width: 100vw;\n		z-index: 1;\n	\n	}\n\n\n\n\n	body::after{\n			content: '';\n			background-image: url(/images/noise.png);\n			background-repeat: repeat;\n			pointer-events: none;\n			width: 100%;\n			height: 100%;\n			z-index: -10;\n			position: fixed;\n			top: 0;\n	}\n</style>\n	",
+    app: ({ head, body, assets: assets2, nonce, env }) => '\r\n\r\n<!DOCTYPE html>\r\n<html lang="fr" >\r\n	<head>\r\n		<meta charset="utf-8" />\r\n\r\n		<meta name="viewport" content="width=device-width" />\r\n		' + head + '\r\n	</head>\r\n	<body data-sveltekit-preload-data="hover" style="background: #0B2027 ;">\r\n		<div style="display: contents">' + body + "</div>\r\n	</body>\r\n</html>\r\n\r\n<style>\r\n\r\n	body {\r\n	\r\n	\r\n		\r\n		background: radial-gradient(at center, #0B2027 , #061418);\r\n		background-repeat: no-repeat;\r\n		width: 100%;\r\n		height: 100%;\r\n		min-height: 100vh;\r\n		min-width: 100vw;\r\n		z-index: 1;\r\n	\r\n	}\r\n\r\n\r\n\r\n\r\n	body::after{\r\n			content: '';\r\n			background-image: url(/images/noise.png);\r\n			background-repeat: repeat;\r\n			pointer-events: none;\r\n			width: 100%;\r\n			height: 100%;\r\n			z-index: -10;\r\n			position: fixed;\r\n			top: 0;\r\n	}\r\n</style>\r\n	",
     error: ({ status, message }) => '<!DOCTYPE html>\n<html lang="en">\n	<head>\n		<meta charset="utf-8" />\n		<title>' + message + `</title>
 
 		<style>
@@ -190,7 +192,7 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "qviflh"
+  version_hash: "zp5lrq"
 };
 function get_hooks() {
   return import('./chunks/hooks.server-9045a7d4.js');
@@ -1342,7 +1344,6 @@ function requireSetCookie () {
 
 var setCookieExports = requireSetCookie();
 
-const DEV = false;
 function negotiate(accept, types) {
   const parts = [];
   accept.split(",").forEach((str, i) => {

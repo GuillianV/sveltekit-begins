@@ -2,11 +2,10 @@
 <script>
     import {page} from '$app/stores'
     import {GetTraductions} from '$lib/lang/traductions.js'
-    import { lowDetailMode } from '$lib/settings/detailMode.js'
+    import { setting_ldm_store } from '$lib/settings/detailMode.js'
     import H1 from "$lib/components/H1.svelte";
     import GitGui from "$lib/components/GitGui.svelte";
 
- 
     export let data;
 
 
@@ -15,6 +14,6 @@
 <H1 innerText="{GetTraductions(data,"titre")}" />
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
 <a href="/{GetTraductions(data,"code")}/about">a propos</a>
-{#if $lowDetailMode != false}
+{#if $setting_ldm_store > 0}
     <GitGui />
 {/if}

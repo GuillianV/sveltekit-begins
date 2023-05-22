@@ -1,6 +1,6 @@
 <script>
 
-import { lowDetailMode } from '$lib/settings/detailMode.js'
+import { setting_ldm_store } from '$lib/settings/detailMode.js'
 import { onMount } from 'svelte';
 import {page} from '$app/stores'
 import {GetTraductions} from '$lib/lang/traductions.js'
@@ -10,17 +10,20 @@ let popupPanel;
 let popupPanelOpen = false;
 
 let switchElem;
+
+
+
 function togglePopupPanel(){
     popupPanelOpen = !popupPanelOpen;
   
 }
 function detailMode(){
-    $lowDetailMode = switchElem.checked 
+    $setting_ldm_store = switchElem.checked ? "1" : ""
 }
 
 onMount(_=>{
 
-    switchElem.checked = $lowDetailMode; 
+    switchElem.checked = $setting_ldm_store.length > 0 ? true : false; 
 
 })
 
