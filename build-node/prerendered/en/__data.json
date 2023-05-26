@@ -1,1 +1,1 @@
-{"type":"data","nodes":[null,{"type":"data","data":[{"titre":1,"code":2,"language":3,"LDM":4,"intro":5},"Homepage","en","English","Low detail mode","Welcome to my homepage"],"uses":{}},null]}
+{"type":"data","nodes":[null,{"type":"data","data":[{"titre":1,"code":2,"language":3,"Setting.LDM":4,"Setting.Language":5,"page_home":6,"page_about":9},"Homepage default","en","English","Low detail mode","Change language",{"titre":7,"intro":8},"Homepage","Welcome to my homepage",{"titre":10,"intro":11},"About","about my past, my life, my future"],"uses":{}},null]}

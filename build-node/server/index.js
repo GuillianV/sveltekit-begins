@@ -192,10 +192,10 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "zp5lrq"
+  version_hash: "4srzf4"
 };
 function get_hooks() {
-  return import('./chunks/hooks.server-9045a7d4.js');
+  return import('./chunks/hooks.server-b6bcfecc.js');
 }
 
 /** @type {Record<string, string>} */

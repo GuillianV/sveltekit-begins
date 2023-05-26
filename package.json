@@ -29,6 +29,7 @@
 	"type": "module",
 	"dependencies": {
 		"@splinetool/loader": "^0.9.339",
+		"sveltekit-i18n": "^2.2.2",
 		"three": "^0.152.2"
 	}
 }

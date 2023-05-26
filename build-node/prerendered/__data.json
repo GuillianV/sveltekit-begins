@@ -1,1 +1,1 @@
-{"type":"data","nodes":[null,{"type":"data","data":[{"titre":1,"code":2,"language":3,"LDM":4},"Titre par default","fr","Français","Mode détaillé"],"uses":{}},null]}
+{"type":"data","nodes":[null,{"type":"data","data":[{"titre":1,"code":2,"language":3,"Setting.LDM":4,"Setting.Language":5,"page_home":6,"page_about":9},"Titre par default","fr","Français","Mode détaillé","Changer de langue",{"titre":7,"intro":8},"Ma page Home","Bienvenue à la page d'accueil",{"titre":10,"intro":11},"a propos","Mon passé, ma vie, mon futur"],"uses":{}},null]}

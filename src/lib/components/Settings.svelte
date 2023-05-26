@@ -2,10 +2,10 @@
 
 import { setting_ldm_store } from '$lib/settings/detailMode.js'
 import { onMount } from 'svelte';
-import { goto } from "$app/navigation"
+import { goto, invalidateAll } from "$app/navigation"
 import {page} from '$app/stores'
-import {GetTraductions,GetCodes} from '$lib/lang/traductions.js'
-let {data ={}}=$page 
+import { t } from '$lib/translations';
+
 
 let popupPanel;
 let popupPanelOpen = false;
@@ -22,11 +22,12 @@ function detailMode(){
 function languageChanged(event){
     let select = event.currentTarget
     let {value}  = select.options[select.selectedIndex]
-    
-    let route = $page.url.pathname
-    route = route.replace(data.code, value)
-    debugger
-    goto(route)
+
+    goto(`/${value}`,{
+        // replaceState: true,
+        invalidateAll: true,
+        
+    })
  
 
 }
@@ -44,7 +45,7 @@ onMount(_=>{
 
     <table>
         <tr>
-            <td>{GetTraductions(data,"Setting.LDM")}</td>
+            <td>{$t('home.Setting_LDM')}</td>
             <td>
                 <label class="switch">
                     <input bind:this={switchElem} on:click={detailMode} type="checkbox">
@@ -53,10 +54,10 @@ onMount(_=>{
             </td>
         </tr>
         <tr>
-            <td>{GetTraductions(data,"Setting.Language")}</td>
+            <td>{$t('home.Setting_Language')}</td>
             <td>
-                <select value="{data.code}" on:change={languageChanged}>
-                    {#each GetCodes() as langCode}
+                <select value="fr" on:change={languageChanged}>
+                    {#each ["fr","en"] as langCode}
                       <option  value={langCode}>{langCode}</option>
                     {/each}
                   </select>
