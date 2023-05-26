@@ -5,8 +5,7 @@
     import {page} from '$app/stores'
     import Nav from '$lib/components/Nav.svelte'
     import Settings from '$lib/components/Settings.svelte'
-	import {browser} from '$app/environment';
-    export let data;
+
 
 </script>
 

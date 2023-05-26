@@ -1,6 +1,6 @@
 
 <script>
-    import {page} from '$app/stores'
+
     import { setting_ldm_store } from '$lib/settings/detailMode.js'
     import H1 from "$lib/components/H1.svelte";
     import GitGui from "$lib/components/GitGui.svelte";

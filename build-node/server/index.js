@@ -192,10 +192,10 @@ const options = {
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "4srzf4"
+  version_hash: "1n7on3t"
 };
 function get_hooks() {
-  return import('./chunks/hooks.server-b6bcfecc.js');
+  return import('./chunks/hooks.server-36ffd81b.js');
 }
 
 /** @type {Record<string, string>} */
@@ -808,7 +808,7 @@ function writable(value, start = noop) {
   function update(fn) {
     set(fn(value));
   }
-  function subscribe(run, invalidate = noop) {
+  function subscribe2(run, invalidate = noop) {
     const subscriber = [run, invalidate];
     subscribers.add(subscriber);
     if (subscribers.size === 1) {
@@ -823,7 +823,7 @@ function writable(value, start = noop) {
       }
     };
   }
-  return { set, update, subscribe };
+  return { set, update, subscribe: subscribe2 };
 }
 
 var cookie = {};

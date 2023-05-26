@@ -21,8 +21,7 @@ const config = {
             polyfill: true
         }),
 		prerender:{
-			crawl:true,
-			entries:['/','/fr','/en','/es']
+			crawl:true
 		}
 	}
 };

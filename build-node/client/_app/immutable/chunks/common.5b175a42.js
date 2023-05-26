@@ -1,0 +1,1 @@
+const e="Homepage default",t="en",n="English",g="Low detail mode",a="Change language",o={titre:e,code:t,language:n,Setting_LDM:g,Setting_Language:a};export{g as Setting_LDM,a as Setting_Language,t as code,o as default,n as language,e as titre};
