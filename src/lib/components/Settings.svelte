@@ -4,7 +4,7 @@ import { setting_ldm_store } from '$lib/settings/detailMode.js'
 import { onMount } from 'svelte';
 import { goto, invalidateAll } from "$app/navigation"
 import {page} from '$app/stores'
-import { t } from '$lib/translations';
+import { t,locales, locale, } from '$lib/translations';
 
 
 let popupPanel;
@@ -45,7 +45,7 @@ onMount(_=>{
 
     <table>
         <tr>
-            <td>{$t('home.Setting_LDM')}</td>
+            <td>{$t('common.Setting_LDM')}</td>
             <td>
                 <label class="switch">
                     <input bind:this={switchElem} on:click={detailMode} type="checkbox">
@@ -54,11 +54,11 @@ onMount(_=>{
             </td>
         </tr>
         <tr>
-            <td>{$t('home.Setting_Language')}</td>
+            <td>{$t('common.Setting_Language')}</td>
             <td>
-                <select value="fr" on:change={languageChanged}>
-                    {#each ["fr","en"] as langCode}
-                      <option  value={langCode}>{langCode}</option>
+                <select bind:value="{$locale}">
+                    {#each $locales as value}
+                      <option value="{value}">{$t(`lang.${value}`)}</option>
                     {/each}
                   </select>
             </td>

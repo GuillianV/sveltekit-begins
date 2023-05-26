@@ -8,10 +8,6 @@
 	import {browser} from '$app/environment';
     export let data;
 
-    if(browser)
-        document.documentElement.lang = data.code
-  
-
 </script>
 
 <svelte:head>
