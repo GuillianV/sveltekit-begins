@@ -157,13 +157,16 @@ input:checked + .slider:before {
     position: fixed;
     top: 0;
     right: 0;
-    background-color: $color-darkblue;
+    background-color: rgba($color-darkblue, 0.7) ;
+    backdrop-filter: brightness(1.5) blur(4px);
     margin:32px;
     z-index: 20;
     padding: 16px;
+    box-shadow: 3px 3px 10px -5px #000000;
     opacity: 0;
     transition: cubic-bezier(0.39, 0.575, 0.565, 1) .3s all;
-
+    border-top-right-radius: 32px;
+    border-bottom-left-radius: 32px;
     &.popup-open{
         opacity: 1;
     }

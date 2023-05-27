@@ -3,9 +3,7 @@
 
 <script>
     import {page} from '$app/stores'
-    import Nav from '$lib/components/Nav.svelte'
-    import Settings from '$lib/components/Settings.svelte'
-
+    import Header from '$lib/components/Header.svelte'
 
 </script>
 
@@ -15,8 +13,8 @@
 </svelte:head>
 
 <div class="app">
-    <Nav />
-    <Settings />
+    <Header />
+
 	<main>
 		<slot />
 	</main>
