@@ -19,21 +19,11 @@ function togglePopupPanel(){
 function detailMode(){
     $setting_ldm_store = switchElem.checked ? "1" : ""
 }
-function languageChanged(event){
-    let select = event.currentTarget
-    let {value}  = select.options[select.selectedIndex]
 
-    goto(`/${value}`,{
-        // replaceState: true,
-        invalidateAll: true,
-        
-    })
- 
-
-}
 onMount(_=>{
 
     switchElem.checked = $setting_ldm_store.length > 0 ? true : false; 
+
 
 })
 
@@ -167,7 +157,9 @@ input:checked + .slider:before {
     transition: cubic-bezier(0.39, 0.575, 0.565, 1) .3s all;
     border-top-right-radius: 32px;
     border-bottom-left-radius: 32px;
+    pointer-events: none;
     &.popup-open{
+        pointer-events: all;
         opacity: 1;
     }
     table{
@@ -180,6 +172,11 @@ input:checked + .slider:before {
             font-family: $font-family-secondary;
             td{
                 padding: 8px;
+                select{
+                    border-radius: 16px;
+                    text-align: center;
+                    border: none;
+                }
             }
         }
     }

@@ -18,7 +18,7 @@ const config = ({
     {
       locale: 'fr',
       key: 'home',
-      routes: ['/'], // you can use regexes as well!
+      routes: ['/'], 
       loader: async () => (
         await import('./fr/home.json')
       ).default,
@@ -29,6 +29,14 @@ const config = ({
       routes: ['/about'],
       loader: async () => (
         await import('./fr/about.json')
+      ).default,
+    },
+    {
+      locale: 'fr',
+      key: 'projects',
+      routes: ['/projects'],
+      loader: async () => (
+        await import('./fr/projects.json')
       ).default,
     },
     {
@@ -52,6 +60,14 @@ const config = ({
       routes: ['/about'],
       loader: async () => (
         await import('./en/about.json')
+      ).default,
+    },
+    {
+      locale: 'en',
+      key: 'projects',
+      routes: ['/projects'],
+      loader: async () => (
+        await import('./en/projects.json')
       ).default,
     },
   ],

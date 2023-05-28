@@ -2,6 +2,9 @@
     "titre":"Homepage default",
     "code": "en",
     "language": "English",
+    "homepage": "Homepage",
+    "about":"About",
+    "projects": "Projects",
     "Setting_LDM":"Low detail mode",
     "Setting_Language":"Change language"
     

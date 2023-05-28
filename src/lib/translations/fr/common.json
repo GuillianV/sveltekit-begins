@@ -2,6 +2,9 @@
     "titre":"Titre par default",
     "code": "fr",
     "language": "Français",
+    "homepage": "Acceuil",
+    "about":"A propos",
+    "projects": "Mes projets",
     "Setting_LDM":"Mode détaillé",
     "Setting_Language":"Changer de langue"
 
