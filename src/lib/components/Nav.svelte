@@ -71,10 +71,10 @@ function setNavActive(pathname = null){
         left: 0;
         width: 100%;
         height: 100%;
-        background-color: rgba($color-darkblue,  .8);
+        background-color: rgba($color-darkblue,  1);
      
         clip-path: polygon(0 0, 30% 0, 30% 0, 0 0, 0 30%, 0 30%);
-        backdrop-filter: brightness(3.5) blur(4px);
+        backdrop-filter: brightness(3.5);
         box-shadow: 3px 3px 10px -5px #000000;
         display: flex;
         justify-content: center;
@@ -128,6 +128,7 @@ button{
     width: 100%;
     height: 100%;
     justify-content: center;
+    cursor: pointer;
     &.active{
 
         span:nth-child(1){
