@@ -8,8 +8,15 @@ function toggleNav(){
     navActive =!navActive
 
 }
-console.log(url)
 
+function setNavActive(pathname = null){
+    if(pathname == null || url == null){
+        return false;
+    }
+
+    return url.pathname == pathname;
+    
+}
 
 </script>
 <div id="navContainer">
@@ -24,15 +31,15 @@ console.log(url)
 
         <div id="linksContainer">
 
-            <span class="{url.pathname == "/about" ? "active": ""}" style="--m:1">
+            <span class="{setNavActive("/about") ? "active": ""}" style="--m:1">
                 <a  href="/about">{$t("common.about")}</a>
             </span>
 
-            <span class="{url.pathname == "/" ? "active": ""}"  style="--m:2">
+            <span class="{setNavActive("/") ? "active": ""}"  style="--m:2">
                 <a href="/">{$t("common.homepage")}</a>
             </span>
 
-            <span class="{url.pathname == "/projects" ? "active": ""}"  style="--m:3">
+            <span class="{setNavActive("/projects") ? "active": ""}"  style="--m:3">
                 <a href="/projects">{$t("common.projects")}</a>
             </span>
 

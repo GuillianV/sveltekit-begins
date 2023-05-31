@@ -31,12 +31,12 @@ var _page = /*#__PURE__*/Object.freeze({
   ssr: ssr
 });
 
-const index = 7;
+const index = 8;
 const component = async () => (await import('./_page.svelte-87f86224.js')).default;
 const universal_id = "src/routes/(tests)/pokemon/[pokemonName]/+page.js";
-const imports = ["_app/immutable/nodes/7.0edbee78.js","_app/immutable/chunks/control.e7f5239e.js","_app/immutable/chunks/index.f42e8665.js"];
+const imports = ["_app/immutable/nodes/8.0edbee78.js","_app/immutable/chunks/control.e7f5239e.js","_app/immutable/chunks/index.f42e8665.js"];
 const stylesheets = [];
 const fonts = [];
 
 export { component, fonts, imports, index, stylesheets, _page as universal, universal_id };
-//# sourceMappingURL=7-b9af5f9a.js.map
+//# sourceMappingURL=8-8ddcc19a.js.map

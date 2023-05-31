@@ -56,13 +56,13 @@ var _page_server = /*#__PURE__*/Object.freeze({
   load: load
 });
 
-const index = 10;
+const index = 11;
 const component = async () => (await import('./_page.svelte-0c4068bf.js')).default;
 const universal_id = "src/routes/(tests)/unsplash/random/+page.js";
 const server_id = "src/routes/(tests)/unsplash/random/+page.server.js";
-const imports = ["_app/immutable/nodes/10.cc13bdfd.js","_app/immutable/chunks/index.f42e8665.js"];
-const stylesheets = ["_app/immutable/assets/10.9724ed64.css"];
+const imports = ["_app/immutable/nodes/11.1beef673.js","_app/immutable/chunks/index.f42e8665.js"];
+const stylesheets = ["_app/immutable/assets/11.9724ed64.css"];
 const fonts = [];
 
 export { component, fonts, imports, index, _page_server as server, server_id, stylesheets, _page as universal, universal_id };
-//# sourceMappingURL=10-74989a99.js.map
+//# sourceMappingURL=11-54cb1e3b.js.map
