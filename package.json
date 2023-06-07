@@ -21,6 +21,7 @@
 		"eslint-plugin-svelte": "^2.26.0",
 		"prettier": "^2.8.0",
 		"prettier-plugin-svelte": "^2.8.1",
+		"prisma": "^4.15.0",
 		"sass": "^1.62.1",
 		"svelte": "^3.54.0",
 		"svelte-preprocess": "^5.0.3",
@@ -28,7 +29,9 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@prisma/client": "^4.15.0",
 		"@splinetool/loader": "^0.9.339",
+		"bcrypt": "^5.1.0",
 		"sveltekit-i18n": "^2.2.2",
 		"three": "^0.152.2"
 	}
