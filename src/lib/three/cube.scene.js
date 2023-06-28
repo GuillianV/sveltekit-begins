@@ -24,7 +24,7 @@ export class CubeScene {
 		this.camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 		this.camera.position.z = 5;
 	
-		this.geometry = new THREE.BoxGeometry();
+		this.geometry = new THREE.ConeGeometry();
 	
 		this.material = new THREE.MeshStandardMaterial({
 			color: 0x00ff00,
@@ -49,13 +49,8 @@ export class CubeScene {
 		window.addEventListener('resize', this.resize);
 
 		window.addEventListener('mousemove', (event) => {
-			if (this.isDragging) {
-				const mouseX = event.clientX;
-				const mouseY = event.clientY;
-				this.cube.rotation.y += (mouseX - this.width / 2) * 0.00005;
-				this.cube.rotation.x += (mouseY - this.height / 2) * 0.00005;
-				this.renderer.render(this.scene, this.camera);
-			}
+			this.mouseX = event.clientX;
+			this.mouseY = event.clientY;
 		});
 	}
 
@@ -78,11 +73,14 @@ export class CubeScene {
 		requestAnimationFrame(()=>{
 			this.animate()
 		});
-		if(!this.isDragging){
-			this.cube.rotation.x += 0.01;
-			this.cube.rotation.y += 0.01;
-			this.renderer.render(this.scene, this.camera);
-		}
+			if (this.isDragging) {
+				this.cube.rotation.y += (this.mouseX - this.width / 2) * 0.00005;
+				this.cube.rotation.x += (this.mouseY - this.height / 2) * 0.00005;
+				this.renderer.render(this.scene, this.camera);
+			}
+		this.renderer.render(this.scene, this.camera);
+
+
 
 	}
 

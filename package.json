@@ -32,6 +32,7 @@
 		"@prisma/client": "^4.15.0",
 		"@splinetool/loader": "^0.9.339",
 		"bcrypt": "^5.1.0",
+		"gsap": "^3.12.1",
 		"sveltekit-i18n": "^2.2.2",
 		"three": "^0.152.2"
 	}
