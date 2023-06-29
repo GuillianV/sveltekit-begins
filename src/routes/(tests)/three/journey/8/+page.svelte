@@ -32,6 +32,9 @@
             height: window.innerHeight
         }
 
+        /**
+         * Events
+        */
         window.addEventListener("resize",()=>{
             sizes.width =  window.innerWidth
             sizes.height = window.innerHeight
@@ -40,6 +43,18 @@
             camera.updateProjectionMatrix()
 
             renderer.setSize(sizes.width,sizes.height)
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
+        })
+
+
+        window.addEventListener("dblclick",()=>{
+
+            if(!document.fullscreenElement){
+                canvas.requestFullscreen()
+            }else{
+                document.exitFullscreen()
+            }
+
         })
 
         /**
@@ -62,7 +77,7 @@
             alpha:true
         })
         renderer.setSize(sizes.width, sizes.height)
-        renderer.setPixelRatio(window.devicePixelRatio)
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio,2))
 
         /**
          * Animate
