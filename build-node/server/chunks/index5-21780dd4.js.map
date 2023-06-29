@@ -1,0 +1,1 @@
+{"version":3,"file":"index5-21780dd4.js","sources":["../../../.svelte-kit/adapter-node/chunks/index5.js"],"sourcesContent":["import prisma from \"@prisma/client\";\nconst db = new prisma.PrismaClient();\nexport {\n  db as d\n};\n"],"names":[],"mappings":";;AACK,MAAC,EAAE,GAAG,IAAI,MAAM,CAAC,YAAY;;;;"}

@@ -1,6 +1,7 @@
 <script>
 	import { onMount } from 'svelte';
     import * as THREE from 'three'
+    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     import gsap from 'gsap'
 
     onMount(() => {
@@ -57,6 +58,14 @@
         camera.lookAt(mesh.position)
         scene.add(camera)
 
+        //Controls
+        const controls = new OrbitControls(camera,canvas)
+        controls.enableDamping = true
+        controls.dampingFactor = 0.3
+        controls.autoRotate = true
+        controls.autoRotateSpeed = 2
+
+
         // Renderer
         const renderer = new THREE.WebGLRenderer({
             canvas: canvas,
@@ -73,12 +82,17 @@
 
             // Update objects
             // mesh.rotation.y = elapsedTime;
-            mesh.rotation.y = cursor.x * Math.PI * 2
-            mesh.rotation.x = cursor.y * Math.PI * 2
+            //     mesh.rotation.y = cursor.x * Math.PI * 2
+            //    // mesh.rotation.x = cursor.y * Math.PI * 2
 
-            camera.position.x  = -cursor.x 
-            camera.position.y = cursor.y
-            camera.lookAt(mesh.position)
+            //     camera.position.x  = -cursor.x 
+            //     camera.position.y = cursor.y *5
+            //     camera.lookAt(mesh.position)
+
+
+            //Update controls
+            controls.update()
+
             // Render
             renderer.render(scene, camera)
 
