@@ -36,12 +36,12 @@
 
 
   h1{
-
+    position: relative;
     width: 100%;
     text-align: center;
     font-size: 3rem;
     padding: 16px;
-
+    z-index: 10;
   }
 
 }
