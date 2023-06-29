@@ -3,10 +3,17 @@
     import * as THREE from 'three'
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     import gsap from 'gsap'
+    import GUI from 'lil-gui/dist/lil-gui.esm'; 
 
     onMount(() => {
             
 
+        /**
+         * DEBUG
+        */
+        const gui = new GUI();
+
+  
         /**
          * Base
          */
@@ -24,6 +31,35 @@
         const mesh = new THREE.Mesh(geometry, material)
         scene.add(mesh)
 
+
+        let spinTl = new gsap.timeline()
+        const cubeSettings = {
+
+            spinRight:()=>{
+                if(!spinTl.isActive())
+                    spinTl.to(mesh.rotation,{
+                        y:mesh.rotation.y + Math.PI *0.5,
+                    })
+            },
+            spinLeft:()=>{
+                if(!spinTl.isActive())
+                    spinTl.to(mesh.rotation,{
+                        y:mesh.rotation.y - Math.PI *0.5,
+                    })
+            }
+
+
+        }
+      
+        const folder = gui.addFolder('Cube')
+        folder.add(mesh.position,'x').min(-3).max(3).step(0.1).name("position X")
+        folder.add(mesh.position,'y').min(-3).max(3).step(0.1).name("position Y")
+        folder.add(mesh.position,'z').min(-3).max(3).step(0.1).name("position Z")
+        folder.add(mesh,'visible')
+        folder.add(material,'wireframe')
+        folder.addColor(material,'color')
+        folder.add(cubeSettings,"spinRight").name("Spin Right !")
+        folder.add(cubeSettings,"spinLeft").name("Spin Left !")
         /**
          * Sizes
          */
