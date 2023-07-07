@@ -31,6 +31,7 @@
 
 
         const textureLoader = new THREE.TextureLoader(loadingManager)
+        const checkboard = textureLoader.load('/three/journey/11/textures/minecraft.png',)
         const albedo = textureLoader.load('/three/journey/11/textures/door/color.jpg',)
         const alpha = textureLoader.load('/three/journey/11/textures/door/alpha.jpg',)
         const ambient = textureLoader.load('/three/journey/11/textures/door/ambientOcclusion.jpg',)
@@ -39,7 +40,10 @@
         const height = textureLoader.load('/three/journey/11/textures/door/height.jpg',)
         const roughness = textureLoader.load('/three/journey/11/textures/door/roughness.jpg',)
 
-
+        checkboard.generateMipmaps = false
+        checkboard.minFilter=THREE.NearestFilter
+        checkboard.magFilter=THREE.NearestFilter
+    //        console.log(THREE.NearestMipmapLinearFilter);
 
 
         /**
@@ -55,7 +59,7 @@
          * Object
          */
         const geometry = new THREE.BoxGeometry(1, 1, 1)
-        const material = new THREE.MeshBasicMaterial({ map:albedo })
+        const material = new THREE.MeshBasicMaterial({ map:checkboard })
         const mesh = new THREE.Mesh(geometry, material)
         scene.add(mesh)
 
