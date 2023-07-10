@@ -35,43 +35,80 @@
          * Textures
          */
         const textureLoader = new THREE.TextureLoader(loaderManager)
-
-
-        const textMesh = new THREE.Mesh(
-                new THREE.BoxGeometry(1,1,1),
-                new THREE.MeshToonMaterial()
-        )
+        const toonTexture = textureLoader.load('/three/journey/12/textures/gradients/5.jpg')
 
         /**
          * Fonts
         */
         const fontLoader = new FontLoader(loaderManager);
-        fontLoader.load('/three/journey/13/fonts/Belanosima_SemiBold_Regular.json',(font)=>{
 
-            const textGeometry = new TextGeometry( 'Hedsdsqdsqqsddsq', {
-                font: font,
-                size: 20,
-                height: 1,
-                curveSegments: 2,
-                bevelEnabled: true,
-                bevelThickness: 2,
-                bevelSize: 1.5,
-                bevelOffset: 0,
-                bevelSegments: 1
-            });
 
-            textMesh.geometry = textGeometry
-            scene.add(textMesh)
 
+        let font;
+        fontLoader.load('/three/journey/13/fonts/Belanosima_SemiBold_Regular.json',(fontLoaded)=>{
+            font = fontLoaded
         });
 
-
         loaderManager.onLoad = (loaded) => {
-           console.log("everything loaded");
+
+
+            let settings = {
+                font,
+                size:0.5,
+                height:0.2,
+                curveSegments:3,
+                bevelEnabled: true,
+                bevelThickness: 0.03,
+                bevelSize: 0.02,
+                bevelOffset: 0,
+                bevelSegments: 2
+            }
+
+            const textGeometry = new TextGeometry( 'Guillian', settings);
+            const textMaterials =  new THREE.MeshToonMaterial()
+            toonTexture.minFilter = THREE.NearestFilter
+            toonTexture.magFilter = THREE.NearestFilter
+            toonTexture.generateMipmaps = false
+            textMaterials.gradientMap = toonTexture
+            
+
+            const textMesh = new THREE.Mesh(
+                textGeometry,
+                textMaterials
+            )
+
+
+
+            const textGeometryFolder = gui.addFolder('Text')
+            textGeometryFolder.add(textMaterials,'wireframe')
+
+
+            scene.add(textMesh)
+
+
 
         }
 
+        /**
+         * Axes
+        */
 
+        const axes = new THREE.AxesHelper()
+        scene.add(axes)
+
+
+        /**
+         * Lights
+        */
+
+        const ambiantLight = new THREE.AmbientLight(0xffffff,0.5)
+        ambiantLight.position.set(2,2,2)
+        scene.add(ambiantLight)
+
+
+        const pointLight = new THREE.PointLight(0xffffff,0.5)
+        pointLight.position.set(-4,4,4)
+        scene.add(pointLight)
         /**
          * Sizes
          */
@@ -99,7 +136,7 @@
          * Camera
          */
         // Base camera
-        const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+        const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 1000)
         camera.position.x = 1
         camera.position.y = 1
         camera.position.z = 2
