@@ -10,6 +10,8 @@
     onMount(() => {
             
         
+        console.time("three")
+
         THREE.ColorManagement.enabled = false
 
         /**
@@ -65,12 +67,22 @@
             }
 
             const textGeometry = new TextGeometry( 'Guillian', settings);
+            // textGeometry.computeBoundingBox()
+            // textGeometry.translate(
+            //     - (textGeometry.boundingBox.max.x - settings.bevelSize) *0.5,
+            //     - (textGeometry.boundingBox.max.y - settings.bevelSize) *0.5,
+            //     - (textGeometry.boundingBox.max.z - settings.bevelThickness) *0.5
+            // )
+
+            textGeometry.center()
+
             const textMaterials =  new THREE.MeshToonMaterial()
             toonTexture.minFilter = THREE.NearestFilter
             toonTexture.magFilter = THREE.NearestFilter
             toonTexture.generateMipmaps = false
+
             textMaterials.gradientMap = toonTexture
-            
+    
 
             const textMesh = new THREE.Mesh(
                 textGeometry,
@@ -78,12 +90,21 @@
             )
 
 
-
             const textGeometryFolder = gui.addFolder('Text')
             textGeometryFolder.add(textMaterials,'wireframe')
 
-
             scene.add(textMesh)
+
+            const coneGeometry = new THREE.ConeGeometry(1,2,8,8)
+
+            for(let i = 0 ; i<100 ; i++ ){
+
+                const coneMesh = new THREE.Mesh(coneGeometry,textMaterials)
+                scene.add(coneMesh)
+ 
+                coneMesh.position.set((Math.random()-0.5)*50,(Math.random()-0.5)*50,(Math.random()-0.5)*50)
+                coneMesh.rotation.set((Math.random()-0.5) * Math.PI,(Math.random()-0.5)* Math.PI,(Math.random()-0.5)* Math.PI)
+            }
 
 
 
@@ -93,8 +114,8 @@
          * Axes
         */
 
-        const axes = new THREE.AxesHelper()
-        scene.add(axes)
+        // const axes = new THREE.AxesHelper()
+        // scene.add(axes)
 
 
         /**
@@ -145,7 +166,8 @@
         // Controls
         const controls = new OrbitControls(camera, canvas)
         controls.enableDamping = true
-
+        controls.maxDistance = 40
+        controls.minDistance = 1
         /**
          * Renderer
          */
@@ -177,6 +199,8 @@
         }
 
         tick()
+
+        console.timeEnd("three")
     })
 
 </script>
