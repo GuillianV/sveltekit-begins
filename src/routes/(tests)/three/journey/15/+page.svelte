@@ -26,18 +26,60 @@
         /**
          * Lights
          */
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5)
-        scene.add(ambientLight)
+        const ambiantLight = new THREE.AmbientLight(0xffffff,0.2)
+        const guiAmbientFolder = gui.addFolder('Ambient Light')
+        guiAmbientFolder.add(ambiantLight,'intensity',0,1,0.1)
+        guiAmbientFolder.addColor(ambiantLight,'color')
+        guiAmbientFolder.add(ambiantLight,'visible')
+        scene.add(ambiantLight)
 
-        const pointLight = new THREE.PointLight(0xffffff, 0.5)
-        pointLight.position.x = 2
-        pointLight.position.y = 3
-        pointLight.position.z = 4
+
+        const directionalLight = new THREE.DirectionalLight(0xffffff,0.5)
+        directionalLight.position.set(3,1,1)
+        const guiDirectionalFolder = gui.addFolder('Directional Light')
+        guiDirectionalFolder.add(directionalLight,'intensity',0,1,0.1)
+        guiDirectionalFolder.addColor(directionalLight,'color').onChange(value => { 
+            directionalLight.color = value;
+        })
+        guiDirectionalFolder.add(directionalLight,'visible')
+        scene.add(directionalLight)
+
+        const hemisphereLight = new THREE.HemisphereLight('#E8B33A','#E8563A',0.3)
+        scene.add(hemisphereLight)
+
+        const pointLight = new THREE.PointLight(0xff00ff,0.4)
+        pointLight.distance = 3
+        pointLight.decay = 4
+        pointLight.position.set(0,-0.4,-2)
         scene.add(pointLight)
 
+         
+        const rectAreaLight = new THREE.RectAreaLight(0xfff000,2.9,1,1)
+        rectAreaLight.position.set(1,1,1)
+        rectAreaLight.lookAt(0,0,0)
+        scene.add(rectAreaLight)
+
+        // const spotLight = new THREE.SpotLight(0xff0f00,0.5,10,Math.PI*0.2,0.25,1)
+        // scene.position.set(2,2,3)
+        // scene.add(spotLight)
+    
+
+        /**
+         * Helpers
+        */
+
+        const hemisphereLightHelper = new THREE.HemisphereLightHelper(hemisphereLight,0.2)
+        scene.add(hemisphereLightHelper)
+
+        const pointLightHelper = new THREE.PointLightHelper(pointLight,0.2)
+        scene.add(pointLightHelper)
         /**
          * Objects
          */
+
+        const axes = new THREE.AxesHelper()
+        scene.add(axes)
+
         // Material
         const material = new THREE.MeshStandardMaterial()
         material.roughness = 0.4
