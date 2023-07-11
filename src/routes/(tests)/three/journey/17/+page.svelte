@@ -17,7 +17,7 @@
          * Base
          */
         // Debug
-        const gui = new dat.GUI()
+        const gui = new GUI()
 
         // Canvas
         const canvas = document.querySelector('canvas.webgl')
@@ -32,14 +32,30 @@
 
         /**
          * House
-         */
-        // Temporary sphere
-        const sphere = new THREE.Mesh(
-            new THREE.SphereGeometry(1, 32, 32),
-            new THREE.MeshStandardMaterial({ roughness: 0.7 })
+        */
+
+        const house = new THREE.Group()
+        scene.add(house)
+
+        let wallsHeight = 3;
+        const walls = new THREE.Mesh(
+            new THREE.BoxBufferGeometry(7,wallsHeight,4,10),
+            new THREE.MeshStandardMaterial({color:"#ac8e82"})
         )
-        sphere.position.y = 1
-        scene.add(sphere)
+        walls.position.y =wallsHeight/2
+        house.add(walls)
+
+        const roofHeight = 2
+        const coneGeometry = new THREE.ConeBufferGeometry(3.5,roofHeight,4)
+        coneGeometry.rotateY(Math.PI*0.25)
+        let roof = new THREE.Mesh(
+            coneGeometry,
+            new THREE.MeshStandardMaterial({color:"#b35f45"})
+        )
+        roof.position.y = wallsHeight + roofHeight/2
+        roof.scale.x = 1.5
+        house.add(roof)
+
 
         // Floor
         const floor = new THREE.Mesh(
@@ -108,7 +124,8 @@
          * Renderer
          */
         const renderer = new THREE.WebGLRenderer({
-            canvas: canvas
+            canvas: canvas,
+            alpha:true
         })
         renderer.outputColorSpace = THREE.LinearSRGBColorSpace
         renderer.setSize(sizes.width, sizes.height)
