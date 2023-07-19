@@ -3,7 +3,7 @@
     import H1 from '$lib/components/H1.svelte';
     import { t } from '$lib/translations';
     import { onMount } from 'svelte';
-    import {InsidecubeScene} from "$lib/three/insidecube.scene.js";
+    // import {InsidecubeScene} from "$lib/three/insidecube.scene.js";
 
     
 	let el;
@@ -13,11 +13,11 @@
     });
 
     async function init() {
-        let gltfScene = new InsidecubeScene({
-            width: window.innerWidth,
-            height: window.innerHeight
-        })
-        gltfScene.createScene(el)
+        // let gltfScene = new InsidecubeScene({
+        //     width: window.innerWidth,
+        //     height: window.innerHeight
+        // })
+        // gltfScene.createScene(el)
     }
 
 </script>
