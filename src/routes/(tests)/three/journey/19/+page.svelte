@@ -8,7 +8,7 @@
     import GUI from 'lil-gui/dist/lil-gui.esm'; 
 
     onMount(() => {
-                                
+                                        
                         
         THREE.ColorManagement.enabled = false
 
@@ -25,44 +25,13 @@
         const scene = new THREE.Scene()
 
         /**
-         * Textures
+         * Test cube
          */
-        const textureLoader = new THREE.TextureLoader()
-        const particleTexture = textureLoader.load("/three/journey/18/textures/particles/9.png")
-        particleTexture.magFilter = THREE.NearestFilter
-
-        /**
-         * Particles
-        */
-        const particlesGeometry = new THREE.BufferGeometry()
-        const particlesMaterialProperties = {
-            alphaMap:particleTexture,
-            // alphaTest:0.001,
-            depthTest:false,
-            depthWrite:false,
-            transparent:true,
-            blending: THREE.AdditiveBlending,
-            vertexColors : true,
-            size:0.4,
-            sizeAttenuation:true}
-        const particlesMaterial = new THREE.PointsMaterial(particlesMaterialProperties)
-        const particlesNumber = 20000;
-        const positions = new Float32Array(particlesNumber*3)
-        const colors = new Float32Array(particlesNumber*3)
-
-        for(let i = 0; i < particlesNumber*3; i++){
-            positions[i] = (Math.random()- .5) *50
-            colors[i]= (Math.random())
-        }
-
-        particlesGeometry.setAttribute("position",new THREE.BufferAttribute(positions,3))
-        particlesGeometry.setAttribute("color",new THREE.BufferAttribute(colors,3))
-
-        const particles = new THREE.Points(particlesGeometry,particlesMaterial)
-        scene.add(particles)
-
-
-   
+        const cube = new THREE.Mesh(
+            new THREE.BoxGeometry(1, 1, 1),
+            new THREE.MeshBasicMaterial()
+        )
+        scene.add(cube)
 
         /**
          * Sizes
@@ -92,6 +61,8 @@
          */
         // Base camera
         const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+        camera.position.x = 3
+        camera.position.y = 3
         camera.position.z = 3
         scene.add(camera)
 
@@ -118,7 +89,6 @@
         {
             const elapsedTime = clock.getElapsedTime()
 
-            particles.position.y = Math.PI * 0.2 * elapsedTime
             // Update controls
             controls.update()
 
@@ -130,7 +100,6 @@
         }
 
         tick()
-
     })
 
 </script>
