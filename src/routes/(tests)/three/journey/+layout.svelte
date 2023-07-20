@@ -1,7 +1,5 @@
 <div id="three-container">
 
-    <h1>Three.js journey</h1>
-
     <slot />
 
 
@@ -11,12 +9,9 @@
 
 
 #three-container{
+  overflow-x: hidden;
     width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    overflow: hidden;
+    height: fit-content;
     z-index: 0;
     font-family: $font-family-secondary;
     color: #03033E;
@@ -35,14 +30,6 @@
   animation: backgroundChange1 50s ease infinite;
 
 
-  h1{
-    position: relative;
-    width: 100%;
-    text-align: center;
-    font-size: 3rem;
-    padding: 16px;
-    z-index: 10;
-  }
 
 }
 
