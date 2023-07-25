@@ -184,6 +184,7 @@
 
         const tick = () =>
         {
+            
           //  const elapsedTime = clock.getElapsedTime()
 
             const currentTime = Date.now()
@@ -202,15 +203,24 @@
                 cameraMovingPosition.z + mouseCameraMovingPosition.z
             ),0.15)
             // Render
-            renderer.render(scene, camera)
+            renderer.render(scene, camera) 
 
             // Call tick again on the next frame
             window.requestAnimationFrame(tick)
+            cpt++;
+            if(cpt == maxCpt)
+                {
+                    var end = window.performance.now();
+                    console.log(`time for ${maxCpt} row of tick`,(end - start) / maxCpt)
+                }
         }
 
-        
+
+        let cpt = 0
+        let maxCpt = 1000
+        var start = window.performance.now();
         tick()
-        
+     
         /**
          * Events
         */
