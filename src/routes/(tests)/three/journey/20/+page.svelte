@@ -5,13 +5,14 @@
     import { FontLoader } from 'three/addons/loaders/FontLoader.js';
     import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
     import gsap from 'gsap'
+    import ScrollTrigger  from 'gsap/dist/ScrollTrigger';
     import GUI from 'lil-gui/dist/lil-gui.esm'; 
 
     onMount(() => {
              
                 
         THREE.ColorManagement.enabled = false
-
+        gsap.registerPlugin(ScrollTrigger)
         /**
          * Loader
         */
@@ -59,11 +60,12 @@
             gradientMap:gradient,
             color:parameters.materialColor
         })
-    
+        const meshArray = []
         const donutMesh = new THREE.Mesh(
-            new THREE.TorusGeometry(2,0.5,5,48),
+            new THREE.TorusGeometry(2,0.5,10,48),
             material
         )
+        meshArray.push(donutMesh)
         donutMesh.position.set(2,0,-5)
         scene.add(donutMesh)
 
@@ -71,6 +73,7 @@
             new THREE.ConeGeometry(2,5,5,4),
             material
         )
+        meshArray.push(coneMesh)
         coneMesh.geometry.center()
         coneMesh.position.set(-2,-10,-5)
         scene.add(coneMesh)
@@ -79,6 +82,7 @@
             new THREE.OctahedronGeometry(2,1),
             material
         )
+        meshArray.push(octahedronMesh)
         octahedronMesh.geometry.center()
         octahedronMesh.position.set(2,-20,-5)
         scene.add(octahedronMesh)
@@ -173,15 +177,30 @@
         */
         const cameraInitialPos = camera.position
         let cameraMovingPosition = new THREE.Vector3(cameraInitialPos.x,cameraInitialPos.y,cameraInitialPos.z)
+        let mouseCameraMovingPosition = new THREE.Vector3(0,0,0)
 
-
-        const clock = new THREE.Clock()
+        //const clock = new THREE.Clock()
+        let time = Date.now()
 
         const tick = () =>
         {
-            const elapsedTime = clock.getElapsedTime()
+          //  const elapsedTime = clock.getElapsedTime()
 
-            camera.position.lerp(cameraMovingPosition,0.15)
+            const currentTime = Date.now()
+            const deltaTime = currentTime - time
+            time = currentTime
+            
+            meshArray.forEach((mesh,index) =>{
+
+                mesh.rotation.y +=  ((1+index) * deltaTime*0.001)
+                
+            })
+
+            camera.position.lerp(new THREE.Vector3(
+                cameraMovingPosition.x + mouseCameraMovingPosition.x,
+                cameraMovingPosition.y + mouseCameraMovingPosition.y,
+                cameraMovingPosition.z + mouseCameraMovingPosition.z
+            ),0.15)
             // Render
             renderer.render(scene, camera)
 
@@ -195,6 +214,62 @@
         /**
          * Events
         */
+
+
+        document.querySelectorAll("h2").forEach((h2,index) => {
+
+            let h2Tl = gsap.timeline({
+                scrollTrigger:{
+                    trigger:h2,
+                    // markers:true,
+                    start:"top center",
+                    end:"bottom center",
+                    once:false,
+                    
+                    onEnter: ()=>{
+                        gsap.to(meshArray[index].rotation,{
+
+                        duration:1.5,
+                        ease:"power4",
+                        y:"+=3",
+
+                        })
+                    },
+                    onLeave: ()=>{
+                        gsap.to(meshArray[index].rotation,{
+
+                        duration:1.5,
+                        ease:"power4",
+                        y:"+=3",
+
+                        })
+                    },
+                    
+
+                    onEnterBack: ()=>{
+                        gsap.to(meshArray[index].rotation,{
+
+                        duration:1.5,
+                        ease:"power4",
+                        y:"+=3",
+
+                        })
+                    },
+                    onLeaveBack: ()=>{
+                        gsap.to(meshArray[index].rotation,{
+
+                        duration:1.5,
+                        ease:"power4",
+                        y:"+=3",
+
+                        })
+                    },
+                    
+                }
+            })
+
+          
+        })
          
      
         window.addEventListener("scroll",event =>{
@@ -202,6 +277,20 @@
             const scrollHeight =  window.scrollY / sizes.maxScrollHeight
             cameraMovingPosition.y =  -20 * scrollHeight
           
+        })
+
+        const mousePos = {
+            x:0,
+            y:0,
+        }
+
+        window.addEventListener("mousemove",event=>{
+
+
+            const xRatio = event.clientX / window.innerWidth   - 0.5
+            const yRatio = event.clientY / window.innerWidth  - 0.5
+            mouseCameraMovingPosition.set(xRatio,yRatio,0)
+
         })
 
     })
