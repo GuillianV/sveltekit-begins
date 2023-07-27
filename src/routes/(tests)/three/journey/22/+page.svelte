@@ -4,6 +4,8 @@
     import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
     import { FontLoader } from 'three/addons/loaders/FontLoader.js';
     import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
+    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
+    import { DRACOLoader } from 'three/addons/loaders/DRACOLoader.js';
     import gsap from 'gsap'
     import ScrollTrigger  from 'gsap/dist/ScrollTrigger';
     import GUI from 'lil-gui/dist/lil-gui.esm'; 
@@ -24,6 +26,53 @@
 
         // Scene
         const scene = new THREE.Scene()
+
+        /**
+         * Models
+        */
+   
+        const dracoLoader = new DRACOLoader()
+        dracoLoader.setDecoderPath('../../node_modules/three/examples/jsm/libs/draco/' )
+        dracoLoader.preload();
+
+        const gltfLoader = new GLTFLoader()
+        gltfLoader.setDRACOLoader(dracoLoader)
+        // gltfLoader.load(
+        //     '/three/journey/22/models/Duck/glTF-Draco/Duck.gltf',
+        //     (gltf)=>{
+        //         scene.add(gltf.scene.children[0])
+        //     }
+        // )
+
+        // gltfLoader.load(
+        //     '/three/journey/22/models/FlightHelmet/glTF/FlightHelmet.gltf',
+        //     (gltf)=>{
+        //        while(gltf.scene.children.length > 0){
+        //             const child = gltf.scene.children[0]
+        //             scene.add(child)
+        //        }
+        //     },
+        // )
+        let mixer = null
+
+        gltfLoader.load(
+            '/three/journey/22/models/Fox/glTF/Fox.gltf',
+            (gltf)=>{
+
+                mixer = new THREE.AnimationMixer(gltf.scene)
+                const action = mixer.clipAction(gltf.animations[2])
+                action.play()
+
+                while(gltf.scene.children.length > 0){
+                    const child = gltf.scene.children[0]
+                    child.scale.set(0.05,0.05,0.05)
+                    scene.add(child)
+               }
+
+
+            }
+        )
+
 
         /**
          * Floor
@@ -116,6 +165,9 @@
             const elapsedTime = clock.getElapsedTime()
             const deltaTime = elapsedTime - previousTime
             previousTime = elapsedTime
+
+            //Update Mixer
+            mixer?.update(deltaTime)
 
             // Update controls
             controls.update()
