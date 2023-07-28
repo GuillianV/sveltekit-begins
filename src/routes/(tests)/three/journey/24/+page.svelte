@@ -38,12 +38,15 @@
         gltfLoader.setDRACOLoader(dracoLoader)
 
         let mixer = null
-
+        let model = null
         gltfLoader.load(
-            '/models/hamburger.glb',
+            '/three/journey/24/models/tac-tic.glb',
             (gltf) =>
             {
-                scene.add(gltf.scene)
+                model = gltf.scene
+                model.scale.set(5,5,5)
+                model.position.set(0,1,0)
+                scene.add(model)
             }
         )
 
