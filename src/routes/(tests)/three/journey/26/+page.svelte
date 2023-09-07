@@ -124,11 +124,27 @@
          * Renderer
          */
         const renderer = new THREE.WebGLRenderer({
-            canvas: canvas
+            canvas: canvas,
+            // antialias:true
         })
         renderer.setSize(sizes.width, sizes.height)
         renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+        renderer.toneMappingExposure = 3
 
+        //directionalLight.shadow.normalBias , bias
+
+        //Tone Mapping
+        renderer.toneMapping = THREE.ReinhardToneMapping
+        renderer.useLegacyLights = false
+        gui.add(renderer,'toneMapping',{
+            No:THREE.NoToneMapping,
+            Linear: THREE.LinearToneMapping,
+            Reinhard: THREE.ReinhardToneMapping,
+            Cineon:THREE.CineonToneMapping,
+            ASCESFilmic:THREE.ACESFilmicToneMapping,
+        })
+
+        gui.add(renderer,'toneMappingExposure',0,10,0.1)
         /**
          * Animate
          */
