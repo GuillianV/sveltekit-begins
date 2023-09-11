@@ -32,17 +32,22 @@
 		 * Test mesh
 		 */
 		// Geometry
-		const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
+		const geometry = new THREE.BoxGeometry(1, 1, 1, 32,32,32);
 
 		// Material
 		const material = new THREE.ShaderMaterial({
 			vertexShader: testVertexShader,
 			fragmentShader: testFragmentShader,
-			side: THREE.DoubleSide
+			transparent : true,
+			side: THREE.DoubleSide,
+			uniforms:{
+				uTime: {type: 'float', value: 0},
+			}
 		});
 
 		// Mesh
 		const mesh = new THREE.Mesh(geometry, material);
+		mesh.scale.set(10,10,10)
 		scene.add(mesh);
 
 		/**
@@ -88,12 +93,19 @@
 		renderer.setSize(sizes.width, sizes.height);
 		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-		/**
+			/**
 		 * Animate
 		 */
+		 const clock = new THREE.Clock();
+
 		const tick = () => {
 			// Update controls
 			controls.update();
+			const elapsedTime = clock.getElapsedTime();
+
+
+			material.uniforms.uTime.value = elapsedTime
+
 
 			// Render
 			renderer.render(scene, camera);
