@@ -12,14 +12,10 @@
 	import ScrollTrigger from 'gsap/dist/ScrollTrigger';
 	import GUI from 'lil-gui/dist/lil-gui.esm';
 	import * as CANNON from 'cannon-es';
-    import testVertexShader from '$lib/three/shaders/28/vertex.glsl'
-    import testFragmentShader from '$lib/three/shaders/28/fragment.glsl'
-
-
+	import testVertexShader from '$lib/three/shaders/29/vertex.glsl';
+	import testFragmentShader from '$lib/three/shaders/29/fragment.glsl';
 
 	onMount(() => {
-
-
 		/**
 		 * Base
 		 */
@@ -33,43 +29,18 @@
 		const scene = new THREE.Scene();
 
 		/**
-		 * Textures
-		 */
-		const textureLoader = new THREE.TextureLoader();
-		const flagTexture = textureLoader.load("/three/journey/28/textures/flag-french.jpg")
-
-		/**
 		 * Test mesh
 		 */
 		// Geometry
 		const geometry = new THREE.PlaneGeometry(1, 1, 32, 32);
 
-
-		const count = geometry.attributes.position.count
-		const randoms = new Float32Array(count)
-
-		for(let i =0; i < count; i++){
-			randoms[i] = Math.random()
-		}
-
-		geometry.setAttribute("aRandom",new THREE.BufferAttribute(randoms,1))
-
-		console.log(geometry);
 		// Material
 		const material = new THREE.ShaderMaterial({
-            vertexShader:testVertexShader,
-            fragmentShader:testFragmentShader,
-			transparent:true,
-            side:THREE.DoubleSide,
-			uniforms:{
-				uFrequency: {type: 'vec2', value: new THREE.Vector2(10,5)},
-				uTime: {type: 'float', value: 0},
-				uTexture: {type:'sampler2D', value: flagTexture}
-			}
-        });
+			vertexShader: testVertexShader,
+			fragmentShader: testFragmentShader,
+			side: THREE.DoubleSide
+		});
 
-		gui.add(material.uniforms.uFrequency.value,'x',0,20,0.001)
-		gui.add(material.uniforms.uFrequency.value,'y',0,20,0.001)
 		// Mesh
 		const mesh = new THREE.Mesh(geometry, material);
 		scene.add(mesh);
@@ -120,14 +91,7 @@
 		/**
 		 * Animate
 		 */
-		const clock = new THREE.Clock();
-
 		const tick = () => {
-			const elapsedTime = clock.getElapsedTime();
-
-			//Update material
-			material.uniforms.uTime.value = elapsedTime
-
 			// Update controls
 			controls.update();
 
