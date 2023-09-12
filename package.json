@@ -30,6 +30,8 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@googlemaps/js-api-loader": "^1.16.2",
+		"@googlemaps/three": "^4.0.5",
 		"@prisma/client": "^4.15.0",
 		"bcrypt": "^5.1.0",
 		"cannon-es": "^0.20.0",
