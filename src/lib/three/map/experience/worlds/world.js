@@ -3,6 +3,8 @@ import Experience from '../index'
 import Environment from './environment.js'
 import Planet from './objects/planet.js'
 import Halo from './objects/halo'
+import Clouds from './objects/clouds'
+import Pin from './objects/pin'
 
 export default class World
 {
@@ -21,7 +23,8 @@ export default class World
              this.environment = new Environment()
              this.planet = new Planet({x:0,y:0,z:0})
              this.halo = new Halo()
-
+             this.clouds = new Clouds()
+             this.pin = new Pin({x:5,y:5,z:5})
         })
        
 
@@ -34,5 +37,8 @@ export default class World
 
         if(this.halo)
             this.halo.tick()
+
+        if(this.clouds)
+            this.clouds.tick()
     }
 }

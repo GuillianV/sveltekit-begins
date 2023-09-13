@@ -62,7 +62,6 @@ export default class Planet
             this.material
         )
 
-        this.mesh.receiveShadow = true
         this.scene.add(this.mesh)
     }
 

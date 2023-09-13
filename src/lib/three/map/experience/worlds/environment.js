@@ -58,7 +58,7 @@ export default class Environment
     }
 
     setEnvironementMap(){
-        debugger
+        
 		this.envMap = this.resources.items.environment
         this.envMap.generateMipmaps = false
         this.envMap.minFilter = THREE.NearestFilter

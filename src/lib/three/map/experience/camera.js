@@ -34,9 +34,11 @@ export default class Camera {
         this.controls.minDistance =15
         this.controls.rotateSpeed =0.5
         this.controls.autoRotate = true
-        this.controls.autoRotateSpeed =0.1
+        this.controls.autoRotateSpeed =2.1
         this.controls.panSpeed =0.1
-        this.controls.maxPolarAngle = Math.PI / 2
+        this.controls.enablePan = false;
+        this.controls.maxPolarAngle = Math.PI / 3 * 2
+        this.controls.minPolarAngle = Math.PI / 3
     }
 
     resize()
