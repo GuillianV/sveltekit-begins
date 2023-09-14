@@ -68,6 +68,7 @@ export default class Planet
     tick(){
 
         this.material.uniforms.uTime.value = this.time.elapsed / 1000;
+
     }
 
 }

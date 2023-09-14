@@ -1,5 +1,6 @@
 import * as THREE from 'three'
 import Experience from "./index";
+import gsap from 'gsap'
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 
 export default class Camera {
@@ -39,6 +40,8 @@ export default class Camera {
         this.controls.enablePan = false;
         this.controls.maxPolarAngle = Math.PI / 3 * 2
         this.controls.minPolarAngle = Math.PI / 3
+        this.controls.enableZoom = false;
+
     }
 
     resize()
@@ -50,6 +53,18 @@ export default class Camera {
     tick()
     {
         this.controls.update()
+    }
+
+    lookAt(position ={x:0,y:0,z:0}){
+
+        const {x,y,z} = position
+        gsap.to(this.instance.position,{
+            x,y,z,
+            duration: 2,
+            ease:"linear"
+        })
+
+        this.controls.autoRotate = false;
     }
 
 }

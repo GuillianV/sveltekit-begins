@@ -7,6 +7,7 @@ import World from './worlds/world'
 import Resources from './utils/resources'
 import sources from './sources'
 import Debug from './utils/debug'
+import Intersect from './utils/intersect';
 
 
 let instance = null;
@@ -27,6 +28,7 @@ export default class Experience {
         this.resources = new Resources(sources)
         this.camera = new Camera()
         this.renderer = new Renderer()
+        this.intersect = new Intersect()
         this.world = new World()
 
         this.sizes.on('resize', ()=>{
@@ -58,6 +60,7 @@ export default class Experience {
         this.debug.tickStart()
         this.camera.tick()
         this.renderer.tick()
+        this.intersect.tick()
         this.world.tick()
         this.debug.tickEnd()
     }

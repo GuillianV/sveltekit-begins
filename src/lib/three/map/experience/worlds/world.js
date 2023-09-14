@@ -24,7 +24,7 @@ export default class World
              this.planet = new Planet({x:0,y:0,z:0})
              this.halo = new Halo()
              this.clouds = new Clouds()
-             this.pin = new Pin({x:5,y:5,z:5})
+             this.pin = new Pin()
         })
        
 
