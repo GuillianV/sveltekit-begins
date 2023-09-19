@@ -5,6 +5,7 @@
     import H1 from "$lib/components/H1.svelte";
     // import GitGui from "$lib/components/GitGui.svelte";
     import { t } from '$lib/translations';
+    import { error, redirect } from '@sveltejs/kit';
 
 
 </script>
