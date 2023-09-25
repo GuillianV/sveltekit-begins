@@ -122,7 +122,10 @@ const experiencesData = [
 		path: '/three/journey/33',
 		title: 'journey 33'
 	},
-
+	{
+		path: '/three/journey/35',
+		title: 'journey 35 Loading' 
+	},
     {
         path:"/three/lameule",
         title:"La meule !",
