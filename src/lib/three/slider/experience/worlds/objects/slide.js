@@ -1,20 +1,26 @@
 import * as THREE from 'three'
 import VertexShader from '../../shaders/vertex.glsl';
 import FragmentShader from '../../shaders/fragment.glsl';
+import Experience from '../../index.js'
+
 export default class Slide {
 
     constructor(image,settings,index,maxIndex){
 
+
+        // this.experience = new Experience()
+        // this.intersect = this.experience.intersect
 
         this.image = image;
         this.settings = settings
         this.index = index
         this.maxIndex = maxIndex
 
+        this.mouseSpeed = 0
+
         this.setMaterial()
         this.setGeometry()
         this.setMesh()
-
     }
 
 
@@ -29,7 +35,8 @@ export default class Slide {
             fragmentShader: FragmentShader,
             uniforms: {
                 uPicture: { value: null },
-                uTwist : { value : this.settings.twist }
+                uTwist : { value : this.settings.twist },
+                uMouseSpeed : { value : 0 }
             }
         });
 
@@ -52,12 +59,22 @@ export default class Slide {
 
     }
 
+ 
+
+    updateMouseSpeed(speed) {
+        this.mouseSpeed = this.mouseSpeed
+    }
+
     remove(){
 
             this.geometry.dispose()
             this.material.dispose()
             this.mesh.clear()
+    }
 
+    tick(){
+        this.mouseSpeed = this.mouseSpeed / (1+this.mouseSpeed)
+        this.material.uniforms.uMouseSpeed.value = this.mouseSpeed
     }
     
 }

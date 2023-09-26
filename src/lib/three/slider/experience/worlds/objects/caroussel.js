@@ -9,6 +9,7 @@ export default class Caroussel {
 
         this.experience = new Experience()
         this.resources = this.experience.resources
+        this.canvas = this.experience.canvas
         this.scene = this.experience.scene
         this.camera = this.experience.camera
         this.gui = this.experience.debug.gui.addFolder('Caroussel')
@@ -91,6 +92,8 @@ export default class Caroussel {
 		this.camera.instance.position.set(cameraStartX,0,cameraStartZ)
 
     }
+
+
 
     removeCaroussel(){
 

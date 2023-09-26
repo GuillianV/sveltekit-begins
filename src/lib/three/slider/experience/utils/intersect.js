@@ -31,6 +31,15 @@ export default class Intersect extends EventEmmiter {
 
         })
 
+        window.addEventListener("mousedown", e=>{
+
+            if(this.currentIntersect !== null){
+                
+                this.trigger(`${this.currentIntersect.name}-drag`,[this.currentIntersect])
+            }
+
+        })
+
 
 	}
 
