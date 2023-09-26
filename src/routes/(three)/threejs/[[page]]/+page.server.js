@@ -144,6 +144,10 @@ const experiencesData = [
         path:"https://tac-tic.guillian.net/",
         title:"Tac Tic !",
     },
+	{
+        path:"/three/slider",
+        title:"Custom Slider",
+    },
   
 ];
 

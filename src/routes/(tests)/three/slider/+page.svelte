@@ -21,8 +21,14 @@
 	import FragmentShader from '$lib/three/shaders/slider/fragment.glsl';
 	import Stats from 'stats.js';
 
+	import Slider from '$lib/three/slider/experience'
 	let loadingBar;
 	onMount(() => {
+
+
+	    const slider =	new Slider(document.querySelector('canvas.webgl'))
+
+		return
 		/**
 		 * Loaders
 		 */
@@ -35,26 +41,49 @@
 			}
 		);
 
+		const gui = new GUI();
+
 		const gltfLoader = new GLTFLoader(loadingManager);
 		const textureLoader = new THREE.TextureLoader(loadingManager);
 
+		/**
+		 * Base
+		 */
+
+		const carousselSettings = {
+			radius: 8.6,
+			space: 0.88,
+			doubleSided : false,
+			wireframe : false,
+			twist:0.046
+		};
+
+		const controlsSettings = {
+			nextSlide : ()=>{
+				carousselIndex++;
+				slide(carousselIndex)
+			},
+			prevSlide : () => {
+				carousselIndex--
+				slide(carousselIndex)
+			},
+			freeMove : true,
+
+		};
 		/*
             Textures
         */
 
 		const imgsTextures = [
 			textureLoader.load('/three/slider/img-1.jpg'),
+			textureLoader.load('/three/slider/img-1.jpg'),
 			textureLoader.load('/three/slider/img-2.jpg'),
 			textureLoader.load('/three/slider/img-3.jpg'),
 			textureLoader.load('/three/slider/img-4.jpg'),
+			textureLoader.load('/three/slider/img-5.jpg'),
 			textureLoader.load('/three/slider/img-5.jpg')
 		];
 
-		/**
-		 * Base
-		 */
-		// Debug
-		const debugObject = {};
 
 		// Canvas
 		const canvas = document.querySelector('canvas.webgl');
@@ -88,20 +117,27 @@
 		 * Camera
 		 */
 		// Base camera
+
+		
 		const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-		camera.position.set(0, 0, -1);
+		camera.position.set(0, 0, -10);
 		scene.add(camera);
 
 		// Controls
 		const controls = new OrbitControls(camera, canvas);
 		controls.enableDamping = true;
-
+		controls.enabled = controlsSettings.freeMove
+		controls.enablePan = false
+		controls.enableZoom = false
+		controls.maxPolarAngle = Math.PI /2
+		controls.minPolarAngle = Math.PI /2
 		/**
 		 * Renderer
 		 */
 		const renderer = new THREE.WebGLRenderer({
 			canvas: canvas,
-			antialias: true
+			antialias: true,
+			alpha:true
 		});
 		renderer.useLegacyLights = false;
 		renderer.toneMapping = THREE.ReinhardToneMapping;
@@ -112,45 +148,82 @@
 		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
 
-		const axes = new THREE.AxesHelper(1)
-		scene.add(axes)
+		const carousselGroup = new THREE.Group()
+		scene.add(carousselGroup)
+
 
 		const imgsMeshs = [];
-		const carousselRadius = 4;
-	
-		for (let i = 0; i < imgsTextures.length; i++) {
-			const imgMaterial = new THREE.ShaderMaterial({
-				wireframe:true,
-				side: THREE.DoubleSide,
-				transparent: true,
-				vertexShader: VertexShader,
-				fragmentShader: FragmentShader,
-				uniforms: {
-					uPicture: { value: null },
-					uCenterPicture: { value: new THREE.Vector2(0,0) },
-					uCenterCaroussel: { value: new THREE.Vector2(0,0) },
-				}
-			});
+		
+	 	const carousselFolder = gui.addFolder("caroussel")
+		carousselFolder.add(carousselSettings, 'radius', 1, 10, 0.1).onChange(createCaroussel);
+		carousselFolder.add(carousselSettings, 'space',0, 5, 0.01).onChange(createCaroussel);
+		carousselFolder.add(carousselSettings, 'doubleSided').onChange(createCaroussel);
+		carousselFolder.add(carousselSettings, 'wireframe').onChange(createCaroussel);
+		carousselFolder.add(carousselSettings, 'twist',-1, 2, 0.001).onChange(createCaroussel);
 
-			const imgGeometry = new THREE.PlaneGeometry(1, 1, 100, 1);
+		const controlsFolder = gui.addFolder("controls")
+		controlsFolder.add(controlsSettings,'nextSlide')
+		controlsFolder.add(controlsSettings,'prevSlide')
+		controlsFolder.add(controlsSettings,'freeMove').onChange(value => controls.enabled = value)
 
-			const mesh = new THREE.Mesh(imgGeometry, imgMaterial);
-			
-			mesh.rotation.y = Math.PI * 0.5 - ((Math.PI * 2) / imgsTextures.length) * i;
-			mesh.scale.x = carousselRadius * 1.455;
-			mesh.scale.y = carousselRadius * 1.455;
-			mesh.position.x =
-				carousselRadius * Math.cos(((360 / imgsTextures.length) * i * Math.PI) / 180);
-			mesh.position.z =
-				carousselRadius * Math.sin(((360 / imgsTextures.length) * i * Math.PI) / 180);
-				mesh.material.uniforms.uPicture.value = imgsTextures[i];
-
-				
-			mesh.material.uniforms.uCenterPicture.value = new THREE.Vector2(mesh.position.x,mesh.position.z)
-			scene.add(mesh);
-			imgsMeshs.push(mesh);
+		let carousselIndex = 0;
+		function slide(index){
+			gsap.to(carousselGroup.rotation,{
+				y: ( - ((Math.PI * 2) / imgsTextures.length) * index)
+			})
 		}
 
+		const cameraStartX = carousselSettings.radius *2 * Math.cos(((360 / imgsTextures.length) *  Math.PI) / 180);
+		const cameraStartZ = carousselSettings.radius *2 * Math.sin(((360 / imgsTextures.length) * Math.PI) / 180);
+		camera.position.set(cameraStartX,0,cameraStartZ)
+
+
+		function createCaroussel() {
+
+			deleteCaroussel()
+
+			for (let i = 0; i < imgsTextures.length; i++) {
+				const imgMaterial = new THREE.ShaderMaterial({
+					wireframe: carousselSettings.wireframe,
+					side: carousselSettings.doubleSided ? THREE.DoubleSide : THREE.FrontSide,
+					transparent: true,
+					vertexShader: VertexShader,
+					fragmentShader: FragmentShader,
+					uniforms: {
+						uPicture: { value: null },
+						uTwist : { value : carousselSettings.twist }
+					}
+				});
+
+				const imgGeometry = new THREE.PlaneGeometry(1, 1, 100, 1);
+
+				const mesh = new THREE.Mesh(imgGeometry, imgMaterial);
+
+				mesh.rotation.y = Math.PI * 0.5 - ((Math.PI * 2) / imgsTextures.length) * i;
+				mesh.scale.x = carousselSettings.radius * carousselSettings.space;
+				mesh.scale.y = carousselSettings.radius *  carousselSettings.space;
+				mesh.position.x =
+					carousselSettings.radius * Math.cos(((360 / imgsTextures.length) * i * Math.PI) / 180);
+				mesh.position.z =
+					carousselSettings.radius * Math.sin(((360 / imgsTextures.length) * i * Math.PI) / 180);
+				mesh.material.uniforms.uPicture.value = imgsTextures[i];
+
+				carousselGroup.add(mesh);
+				imgsMeshs.push(mesh);
+			}
+		}
+
+		function deleteCaroussel() {
+			for (let i = 0; i < imgsMeshs.length; i++) {
+				const mesh = imgsMeshs[i]
+				carousselGroup.remove(mesh);
+				mesh.geometry.dispose()
+				mesh.material.dispose()
+				mesh.clear()
+			}
+		}
+
+		createCaroussel()
 		/**
 		 * Animate
 		 */
