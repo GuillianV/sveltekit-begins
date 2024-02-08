@@ -10,9 +10,11 @@
     import ScrollTrigger  from 'gsap/dist/ScrollTrigger';
     import GUI from 'lil-gui/dist/lil-gui.esm'; 
     import * as CANNON from 'cannon-es'
-
+    import Stats from 'stats.js'
     onMount(() => {
-                
+
+        const stats = new Stats()
+        stats.showPanel(0)  
             
         THREE.ColorManagement.enabled = false
 
