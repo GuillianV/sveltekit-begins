@@ -45,7 +45,7 @@ export default class Caroussel {
         };
 
 
-        this.gui.add(this.carousselSettings, 'radius', 1, 10, 0.1).onChange(() => this.setCaroussel());
+        this.gui.add(this.carousselSettings, 'radius', 1, 15, 0.1).onChange(() => this.setCaroussel());
         this.gui.add(this.carousselSettings, 'space',0, 5, 0.01).onChange(() => this.setCaroussel());
         this.gui.add(this.carousselSettings, 'doubleSided').onChange(() => this.setCaroussel());
         this.gui.add(this.carousselSettings, 'wireframe').onChange(() => this.setCaroussel());

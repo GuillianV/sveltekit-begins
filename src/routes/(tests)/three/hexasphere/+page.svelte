@@ -1,13 +1,7 @@
 <script>
-	import { index } from './../../../../../.svelte-kit/output/server/nodes/2.js';
 	import { onMount } from 'svelte';
 	import * as THREE from 'three';
 	import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-	import { FontLoader } from 'three/addons/loaders/FontLoader.js';
-	import { TextGeometry } from 'three/addons/geometries/TextGeometry.js';
-	import gsap from 'gsap';
-	import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
-	import GUI from 'lil-gui/dist/lil-gui.esm';
 	import Hexasphere from '$lib/hexasphere/hexasphere.js';
 	import Stats from 'stats.js';
 	onMount(() => {
@@ -41,18 +35,18 @@
 			}
 		);
 
-		// const ambientLight = new THREE.AmbientLight('#ffffff', 0.3);
-		// scene.add(ambientLight);
+		const ambientLight = new THREE.AmbientLight('#ffffff', 0.3);
+		scene.add(ambientLight);
 
-		// const directionalLight = new THREE.DirectionalLight('#ffffff', 0.8);
-		// directionalLight.castShadow = true;
-		// directionalLight.position.set(0, 10, 0);
-		// const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight);
-		// scene.add(directionalLight, directionalLightHelper);
+		const directionalLight = new THREE.DirectionalLight('#ffffff', 0.8);
+		directionalLight.castShadow = true;
+		directionalLight.position.set(0, 10, 0);
+		const directionalLightHelper = new THREE.DirectionalLightHelper(directionalLight);
+		scene.add(directionalLight, directionalLightHelper);
 
-		// const pointLight = new THREE.PointLight('#ffffff', 2.5);
-		// pointLight.position.set(-2, 31, 1);
-		// scene.add(pointLight);
+		const pointLight = new THREE.PointLight('#ffffff', 2.5);
+		pointLight.position.set(-2, 31, 1);
+		scene.add(pointLight);
 
 		/**
 		 * Raycaster
@@ -73,18 +67,17 @@
 
 				//Do something with the mesh
 				carthesienne(mesh.userData.lat, mesh.userData.lon);
+				mesh.material.color.set(0xff0000);
 			}
 		});
 
-		let material = new THREE.MeshBasicMaterial({ color: 0x000000, transparent: false });
+		let material = new THREE.MeshBasicMaterial({ color: 0x000100, transparent: false });
 
-		//	material.wireframe = true;
-		material.opacity = 0.7;
-		material.color.setHSL(Math.random(), 1, 0.5);
+
 
 		//Hexasphere
 		const tilesMeshes = [];
-		const hexasphere = new Hexasphere(1, 100, 1);
+		const hexasphere = new Hexasphere(1, 10, 1);
 
 		const groupTiles = new THREE.Group();
 
@@ -107,7 +100,7 @@
 			geometry.setIndex(indices);
 
 			geometry.computeVertexNormals();
-
+		
 			var mesh = new THREE.Mesh(geometry, material.clone());
 			mesh.material.color.setHSL(Math.random(), 1, 0.5);
 			mesh.userData = { id: i, lat: latLon.lat, lon: latLon.lon };
@@ -168,7 +161,7 @@
 		renderer.outputColorSpace = THREE.LinearSRGBColorSpace;
 		renderer.setSize(sizes.width, sizes.height);
 		renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-		renderer.shadowMap.enabled = false;
+		renderer.shadowMap.enabled = true;
 		renderer.toneMapping = THREE.ACESFilmicToneMapping;
 		renderer.toneMappingExposure = 1;
 
@@ -189,7 +182,6 @@
 				const mesh = groupTiles.children[i];
 				const isInFrustum = isMeshInFrustum(mesh, frustumPlanes);
 				mesh.visible = isInFrustum;
-				mesh.material.color.setHSL(0.5, 1, 0.5);
 			}
 		}
 
@@ -215,27 +207,27 @@
 			);
 			updateMeshVisibility(frustum);
 			//Raycaster
-			// raycaster.setFromCamera(mouse, camera);
-			// let intersects = raycaster.intersectObjects(tilesMeshes);
+			raycaster.setFromCamera(mouse, camera);
+			let intersects = raycaster.intersectObjects(tilesMeshes);
 
-			// // gsap.to(groupTiles.rotation, {
-			// // 	duration: 1.5,
-			// // 	ease: 'power4',
-			// // 	y: '+=0.03',
-			// // 	x: '+=0.02'
-			// // });
+			// gsap.to(groupTiles.rotation, {
+			// 	duration: 1.5,
+			// 	ease: 'power4',
+			// 	y: '+=0.03',
+			// 	x: '+=0.02'
+			// });
 
-			// if (intersects.length > 0) {
-			// 	if (!currentIntersect) {
-			// 		// console.log("mouse enter");
-			// 	}
-			// 	currentIntersect = intersects[0];
-			// } else {
-			// 	if (currentIntersect) {
-			// 		// console.log("mouse leave");
-			// 	}
-			// 	currentIntersect = null;
-			// }
+			if (intersects.length > 0) {
+				if (!currentIntersect) {
+					// console.log("mouse enter");
+				}
+				currentIntersect = intersects[0];
+			} else {
+				if (currentIntersect) {
+					// console.log("mouse leave");
+				}
+				currentIntersect = null;
+			}
 			stats.end();
 			// Call tick again on the next frame
 			window.requestAnimationFrame(tick);

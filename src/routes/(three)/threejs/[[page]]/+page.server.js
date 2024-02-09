@@ -148,7 +148,10 @@ const experiencesData = [
         path:"/three/slider",
         title:"Custom Slider",
     },
-  
+	{
+        path:"/three/hexasphere",
+        title:"Exasphere",
+    },
 ];
 
 export const load = async (serverloadEvent) => {
