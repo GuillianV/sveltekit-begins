@@ -31,6 +31,7 @@
         //Fog
         const fog = new THREE.Fog("#262837",1,15)
         scene.fog = fog
+        scene.background = new THREE.Color("#262837")
         /**
          * Textures
          */
