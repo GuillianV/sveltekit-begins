@@ -78,6 +78,10 @@ export default class Intersect extends EventEmmiter {
     }
 
 	tick() {
+
+        if(!this.camera || !this.mouse)
+            return
+
         this.instance.setFromCamera(this.mouse,this.camera.instance)
 
         

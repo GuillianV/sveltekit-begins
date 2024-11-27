@@ -28,7 +28,8 @@ canvas{
     position: fixed;
     top: 0;
     left: 0;
-	background: linear-gradient(-45deg, #0E0027, #32313B, #0a0a0a, #000000);
+	background: rgb(16, 16, 44);
+	// background: linear-gradient(-45deg, #0E0027, #32313B, #0a0a0a, #000000);
 	background-size: 400% 400%;
 	animation: gradient 35s ease infinite;
 	height: 100vh;

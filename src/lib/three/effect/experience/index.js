@@ -8,6 +8,7 @@ import Resources from './utils/resources'
 import sources from './sources'
 import Debug from './utils/debug'
 import Intersect from './utils/intersect';
+import Mouse from './utils/mouse';
 
 
 let instance = null;
@@ -27,6 +28,7 @@ export default class Experience {
         this.scene = new THREE.Scene()
         this.resources = new Resources(sources)
         this.intersect = new Intersect()
+        this.mouse = new Mouse()
         this.camera = new Camera()
         this.renderer = new Renderer()
         this.world = new World()
